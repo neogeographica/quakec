@@ -1,2 +1,4 @@
 fteqcc32
 fteqcc.log
+*.swp
+progs.dat

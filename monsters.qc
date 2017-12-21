@@ -13,8 +13,30 @@
 void() monster_kill_hide =
 {
 	// Tourism: kill and hide on spawn
-    T_Damage(self, world, world, self.health + 10);
-    self.origin_z = self.origin_z - 100000;
+	T_Damage(self, world, world, self.health + 10);
+	self.origin_z = self.origin_z - 100000;
+};
+
+
+void() monster_tourismify =
+{
+	// Tourism: affect monsters according to skill setting
+	if (skill == 0)
+	{
+		// kill and hide on spawn
+		self.think = monster_kill_hide;
+	}
+	else if (skill == 1)
+	{
+		// present but not touchable/shootable
+		self.solid = SOLID_NOT;
+	}
+	else if (skill == 2)
+	{
+		// touchable, shootable with 1 health
+		self.health = 1;
+	}
+	// else touchable, shootable with full health
 };
 
 /*
@@ -124,7 +146,7 @@ local entity	etemp;
 	self.nextthink = self.nextthink + random()*0.5;
     // Tourism
     if (cvar("showturtle") == 1)
-		self.think = monster_kill_hide;
+		monster_tourismify();
 };
 
 void() walkmonster_start =
@@ -179,7 +201,9 @@ void() flymonster_start_go =
 		self.pausetime = 99999999;
 		self.th_stand ();
 	}
-    self.think = monster_kill_hide;	
+    // Tourism
+    if (cvar("showturtle") == 1)
+		monster_tourismify();	
 };
 
 void() flymonster_start =
@@ -232,8 +256,9 @@ void() swimmonster_start_go =
 
 // spread think times so they don't all happen at same time
 	self.nextthink = self.nextthink + random()*0.5;
-	
-    self.think = monster_kill_hide;
+    // Tourism
+    if (cvar("showturtle") == 1)
+		monster_tourismify();
 };
 
 void() swimmonster_start =

@@ -354,6 +354,10 @@ float() FindTarget =
 	local entity	client;
 	local float		r;
 
+    // Tourism: always notarget (in case skill > 0 therefore monsters exist)
+    if (cvar("showturtle") == 1)
+        return FALSE;
+
 // if the first spawnflag bit is set, the monster will only wake up on
 // really seeing the player, not another monster getting angry
 

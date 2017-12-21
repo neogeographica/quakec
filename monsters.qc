@@ -21,22 +21,27 @@ void() monster_kill_hide =
 void() monster_tourismify =
 {
 	// Tourism: affect monsters according to skill setting
+	// (note that in all cases a permanent "notarget" is in effect; see
+	// the FindTarget function in ai.qc)
+
 	if (skill == 0)
 	{
-		// kill and hide on spawn
+		// On Easy skill, remove all monsters.
 		self.think = monster_kill_hide;
 	}
-	else if (skill == 1)
+	else if (skill != 3)
 	{
-		// present but not touchable/shootable
+		// On Normal and Hard, monsters are present but not touchable or
+		// shootable. Both Normal and Hard modes supported here because there
+		// can be more monsters spawned on Hard mode.
 		self.solid = SOLID_NOT;
 	}
-	else if (skill == 2)
+	else
 	{
-		// touchable, shootable with 1 health
+		// On Nightmare, go ahead and leave the monsters solid, but give them
+		// one health in case the player needs/wants to pop them.
 		self.health = 1;
 	}
-	// else touchable, shootable with full health
 };
 
 /*

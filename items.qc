@@ -63,6 +63,13 @@ Sets the clipping size and plants the object on the floor
 */
 void() StartItem =
 {
+	// JPL ghosts mod: remove all items except keys
+	if (cvar("showturtle") == 1 && self.classname !=  "item_key1" &&
+		self.classname !=  "item_key2" && self.classname !=  "item_sigil")
+	{
+		remove(self);
+		return;
+	}
 	self.nextthink = time + 0.2;	// items start after other solids
 	self.think = PlaceItem;
 };

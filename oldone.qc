@@ -231,9 +231,10 @@ void() finale_4 =
 	remove (self);
 
 // switch cd track
-	WriteByte (MSG_ALL, SVC_CDTRACK);
-	WriteByte (MSG_ALL, 3);
-	WriteByte (MSG_ALL, 3);
+	// Ghosts mod: keep playing end level music
+	//WriteByte (MSG_ALL, SVC_CDTRACK);
+	//WriteByte (MSG_ALL, 3);
+	//WriteByte (MSG_ALL, 3);
 	lightstyle(0, "m");	
 };
 

@@ -139,7 +139,10 @@ void(entity attacker, float damage)	demon1_pain =
 };
 
 void()	demon1_die1		=[	$death1,		demon1_die2	] {
-sound (self, CHAN_VOICE, "demon/ddeath.wav", 1, ATTN_NORM);};
+// Tourism: no death sound
+if (cvar("showturtle") != 1)
+	sound (self, CHAN_VOICE, "demon/ddeath.wav", 1, ATTN_NORM);
+};
 void()	demon1_die2		=[	$death2,		demon1_die3	] {};
 void()	demon1_die3		=[	$death3,		demon1_die4	] {};
 void()	demon1_die4		=[	$death4,		demon1_die5	] {};

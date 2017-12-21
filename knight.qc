@@ -224,7 +224,9 @@ void() knight_die =
 	}
 
 // regular death
-	sound (self, CHAN_VOICE, "knight/kdeath.wav", 1, ATTN_NORM);
+	// Tourism: no death sound
+	if (cvar("showturtle") != 1)
+		sound (self, CHAN_VOICE, "knight/kdeath.wav", 1, ATTN_NORM);
 	if (random() < 0.5)
 		knight_die1 ();
 	else

@@ -327,6 +327,9 @@ Laser is only for REGISTERED.
 
 void() trap_spikeshooter =
 {
+	// JPL ghosts mod: no shooters
+	remove (self);
+	return;
 	SetMovedir ();
 	self.use = spikeshooter_use;
 	if (self.spawnflags & SPAWNFLAG_LASER)
@@ -347,7 +350,7 @@ Continuously fires spikes.
 "nextthink" delay before firing first spike, so multiple shooters can be stagered.
 */
 void() trap_shooter =
-{
+{	
 	trap_spikeshooter ();
 	
 	if (self.wait == 0)

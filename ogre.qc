@@ -394,7 +394,9 @@ void() ogre_die =
 		return;
 	}
 
-	sound (self, CHAN_VOICE, "ogre/ogdth.wav", 1, ATTN_NORM);
+	// Tourism: no death sound
+	if (cvar("showturtle") != 1)
+		sound (self, CHAN_VOICE, "ogre/ogdth.wav", 1, ATTN_NORM);
 	
 	if (random() < 0.5)
 		ogre_die1 ();

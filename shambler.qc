@@ -317,7 +317,9 @@ void() sham_die =
 	}
 
 // regular death
-	sound (self, CHAN_VOICE, "shambler/sdeath.wav", 1, ATTN_NORM);
+	// Tourism: no death sound
+	if (cvar("showturtle") != 1)
+		sound (self, CHAN_VOICE, "shambler/sdeath.wav", 1, ATTN_NORM);
 	sham_death1 ();
 };
 

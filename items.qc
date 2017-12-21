@@ -151,7 +151,7 @@ void() health_touch =
 {
 	local	float amount;
 	local	string	s;
-	
+	amount = self.healamount;
 	if (other.classname != "player")
 		return;
 	
@@ -159,17 +159,17 @@ void() health_touch =
 	{
 		if (other.health >= 250)
 			return;
-		if (!T_Heal(other, self.healamount, 1))
+		if (!T_Heal(other, amount, 1))
 			return;
 	}
 	else
 	{
-		if (!T_Heal(other, self.healamount, 0))
+		if (!T_Heal(other, amount, 0))
 			return;
 	}
 	
 	sprint(other, "You receive ");
-	s = ftos(self.healamount);
+	s = ftos(amount);
 	sprint(other, s);
 	sprint(other, " health\n");
 	
@@ -868,8 +868,6 @@ KEYS
 
 void() key_touch =
 {
-local entity	stemp;
-local float		best;
 
 	if (other.classname != "player")
 		return;
@@ -1004,9 +1002,6 @@ END OF LEVEL RUNES
 
 void() sigil_touch =
 {
-local entity	stemp;
-local float		best;
-
 	if (other.classname != "player")
 		return;
 	if (other.health <= 0)
@@ -1077,9 +1072,6 @@ void() powerup_touch;
 
 void() powerup_touch =
 {
-local entity	stemp;
-local float		best;
-
 	if (other.classname != "player")
 		return;
 	if (other.health <= 0)

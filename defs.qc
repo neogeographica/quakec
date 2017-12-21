@@ -398,7 +398,7 @@ float	movedist;
 float	gameover;		// set when a rule exits
 
 string	string_null;	// null string, nothing should be held here
-float	empty_float;
+//float	empty_float;
 
 entity	newmis;			// launch_spike sets this after spawning it
 
@@ -498,7 +498,7 @@ float	AS_MISSILE		= 4;
 //
 // doors, etc
 //
-.vector		dest, dest1, dest2;
+.vector		/*dest,*/ dest1, dest2;
 .float		wait;			// time from firing to restarting
 .float		delay;			// time from activation to firing
 .entity		trigger_field;	// door's trigger entity
@@ -545,9 +545,9 @@ float	AS_MISSILE		= 4;
 //
 // sounds
 //
-.float		waitmin, waitmax;
-.float		distance;
-.float		volume;
+.float		waitmin /*, waitmax*/;
+//.float		distance;
+//.float		volume;
 
 
 
@@ -599,7 +599,7 @@ void() traceoff						= #30;
 void(entity e) eprint				= #31;		// prints an entire edict
 float(float yaw, float dist) walkmove	= #32;	// returns TRUE or FALSE
 // #33 was removed
-float(float yaw, float dist) droptofloor= #34;	// TRUE if landed on floor
+float() droptofloor= #34;	// TRUE if landed on floor
 void(float style, string value) lightstyle = #35;
 float(float v) rint					= #36;		// round to nearest int
 float(float v) floor				= #37;		// largest integer <= v
@@ -690,4 +690,10 @@ float (entity e, float healamount, float ignore) T_Heal; // health function
 
 float(entity targ, entity inflictor) CanDamage;
 
-
+void() DummyFunction = //gets rid of the last compiler warnings ; - )
+{
+local string w;
+local float l;
+w = self.wad;
+l = self.light_lev;
+}

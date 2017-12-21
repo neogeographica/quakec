@@ -109,11 +109,11 @@ void()	Tar_JumpTouch =
 	{
 		if (self.flags & FL_ONGROUND)
 		{	// jump randomly to not get hung up
-//dprint ("popjump\n");
-	self.touch = SUB_Null;
-	self.think = tbaby_run1;
-	self.movetype = MOVETYPE_STEP;
-	self.nextthink = time + 0.1;
+//		dprint ("popjump\n");
+		self.touch = SUB_Null;
+		self.think = tbaby_run1;
+		self.movetype = MOVETYPE_STEP;
+		self.nextthink = time + 0.1;
 
 //			self.velocity_x = (random() - 0.5) * 600;
 //			self.velocity_y = (random() - 0.5) * 600;

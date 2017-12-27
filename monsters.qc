@@ -17,6 +17,21 @@ void() monster_kill_hide =
 	self.origin_z = self.origin_z - 100000;
 };
 
+void() monster_trigger_targets =
+{
+	// Tourism: explicitly trigger targets that normally wait for monster death
+	// First restore the "normal" think routine.
+	self.think = self.think1;
+	self.think1 = SUB_Null;
+	// Now trigger stuff.
+	if (self.target)
+	{
+		activator = world;
+		SUB_UseTargets ();
+	}
+	// Now handoff to normal behavior.
+	self.think();
+};
 
 void() monster_tourismify =
 {
@@ -35,11 +50,17 @@ void() monster_tourismify =
 		// shootable. Both Normal and Hard modes supported here because there
 		// can be more monsters spawned on Hard mode.
 		self.solid = SOLID_NOT;
+		// Go ahead and trigger anything that would normally be triggered on
+		// monster death.
+		self.think1 = self.think;
+		self.think = monster_trigger_targets;
 	}
 	else
 	{
 		// On Nightmare, go ahead and leave the monsters solid, but give them
-		// one health in case the player needs/wants to pop them.
+		// one health in case the player needs/wants to pop them. In this
+		// case the monster death triggers (if any) will only fire when the
+		// monster is killed.
 		self.health = 1;
 	}
 };

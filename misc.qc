@@ -328,8 +328,11 @@ Laser is only for REGISTERED.
 void() trap_spikeshooter =
 {
 	// JPL ghosts mod: no shooters
-	remove (self);
-	return;
+	if (cvar("showturtle") == 1)
+	{
+		remove (self);
+		return;
+	}
 	SetMovedir ();
 	self.use = spikeshooter_use;
 	if (self.spawnflags & SPAWNFLAG_LASER)

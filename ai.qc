@@ -686,7 +686,8 @@ void(float dist) ai_run =
 	
 	movedist = dist;
 // see if the enemy is dead
-	if (self.enemy.health <= 0)
+// Tourism: or if tourism mode is active
+	if (self.enemy.health <= 0 || cvar("showturtle") == 1)
 	{
 		self.enemy = world;
 	// FIXME: look all around for other targets

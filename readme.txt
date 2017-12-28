@@ -11,3 +11,5 @@ In Nightmare (skill 3), monsters still do not notice the player, but they can be
 I'm supporting both Normal and Hard for the "monsters visible" mode, because they have different monster spawns.
 
 Actually Easy can have different spawns too, so an alternate approach to this would be to have Easy/Normal/Hard all be "monster visible" modes, and perhaps put the "no monsters" mode only in Nightmare. However it seems a little odd to have the most pacifist mode be the hidden one.
+
+There's a couple of decisions to make on how to handle monsters that are explicitly triggered when the player does something. Obviously they still shouldn't try to attack the player... but should they play their "wake up" announcement sound? (I chose "no".) Should they start to move around or stand still? (I chose "move around".) See the code comments in ai.qc for details.

@@ -280,6 +280,14 @@ void() SightSound =
 {
 local float	rsnd;
 
+	// Tourism
+	// We let triggered monsters get to this point (rather than cutting them
+	// off in monster_use) so that they will start moving rather than just
+	// standing still. However we don't want to play their sight roar sound.
+	// See also comments in ai_run.
+	if (cvar("showturtle") == 1)
+		return;
+
 	if (self.classname == "monster_ogre")	
 		sound (self, CHAN_VOICE, "ogre/ogwake.wav", 1, ATTN_NORM);
 	else if (self.classname == "monster_knight")
@@ -686,7 +694,11 @@ void(float dist) ai_run =
 	
 	movedist = dist;
 // see if the enemy is dead
-// Tourism: or if tourism mode is active
+	// Tourism
+	// We let triggered monsters get to this point (rather than cutting them
+	// off in monster_use) so that they will start moving rather than just
+	// standing still. However we don't want them to actually attack the
+	// player. See also comments in SightSound.
 	if (self.enemy.health <= 0 || cvar("showturtle") == 1)
 	{
 		self.enemy = world;

@@ -167,11 +167,11 @@ local entity	etemp;
 		self.pausetime = 99999999;
 		self.th_stand ();
 	}
-    
-    // spread think times so they don't all happen at same time
+	
+	// spread think times so they don't all happen at same time
 	self.nextthink = self.nextthink + random()*0.5;
-    // Tourism
-    if (cvar("showturtle") == 1)
+	// Tourism
+	if (cvar("showturtle") == 1)
 		monster_tourismify();
 };
 
@@ -227,8 +227,8 @@ void() flymonster_start_go =
 		self.pausetime = 99999999;
 		self.th_stand ();
 	}
-    // Tourism
-    if (cvar("showturtle") == 1)
+	// Tourism
+	if (cvar("showturtle") == 1)
 		monster_tourismify();	
 };
 
@@ -282,8 +282,8 @@ void() swimmonster_start_go =
 
 // spread think times so they don't all happen at same time
 	self.nextthink = self.nextthink + random()*0.5;
-    // Tourism
-    if (cvar("showturtle") == 1)
+	// Tourism
+	if (cvar("showturtle") == 1)
 		monster_tourismify();
 };
 

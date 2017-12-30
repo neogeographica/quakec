@@ -842,7 +842,11 @@ float() W_BestWeapon =
 		return IT_NAILGUN;
 	if(self.ammo_shells >= 1 && (it & IT_SHOTGUN) )
 		return IT_SHOTGUN;
-	return IT_AXE;
+	// JPL tourism: ignore axe, shotgun will always have ammo
+	if (cvar("showturtle") == 1)
+		return IT_SHOTGUN;
+	else
+		return IT_AXE;
 };
 
 float() W_CheckNoAmmo =
@@ -956,6 +960,9 @@ void() W_ChangeWeapon =
 	
 	if (self.impulse == 1)
 	{
+		// tourism: don't use axe
+		if (cvar("showturtle") == 1)
+			return;
 		fl = IT_AXE;
 	}
 	else if (self.impulse == 2)
@@ -1073,7 +1080,11 @@ void() CycleWeaponCommand =
 
 		if (self.weapon == IT_LIGHTNING)
 		{
-			self.weapon = IT_AXE;
+			// JPL tourism: ignore axe
+			if (cvar("showturtle") == 1)
+				self.weapon = IT_SHOTGUN;
+			else
+				self.weapon = IT_AXE;
 		}
 		else if (self.weapon == IT_AXE)
 		{
@@ -1183,7 +1194,10 @@ void() CycleWeaponReverseCommand =
 		}
 		else if (self.weapon == IT_SHOTGUN)
 		{
-			self.weapon = IT_AXE;
+			if (cvar("showturtle") == 1)
+				return;
+			else
+				self.weapon = IT_AXE;
 		}
 		else if (self.weapon == IT_AXE)
 		{

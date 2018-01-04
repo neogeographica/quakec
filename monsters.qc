@@ -35,33 +35,52 @@ void() monster_trigger_targets =
 
 void() monster_tourismify =
 {
-	// Tourism: affect monsters according to skill setting
+	// Tourism: affect monsters according to showturtle and skill settings
 	// (note that in all cases a permanent "notarget" is in effect; see
 	// the FindTarget function in ai.qc)
 
-	if (skill == 0)
+	if (cvar("showturtle") == 1)
 	{
-		// On Easy skill, remove all monsters.
+		// "normal" Tourism settings
+		if (skill < 3)
+		{
+			// On Easy/Normal/Hard, monsters are present but not touchable or
+			// shootable.
+			self.solid = SOLID_NOT;
+			// Go ahead and trigger anything that would normally be triggered
+			// on monster death.
+			self.think1 = self.think;
+			self.think = monster_trigger_targets;
+		}
+		else
+		{
+			// On Nightmare, remove all monsters.
+			self.think = monster_kill_hide;
+		}
+	}
+	else if (cvar("showturtle") == 2)
+	{
+		// Tourism w/ shootable monsters
+		if (skill < 3)
+		{
+			// On Easy/Normal/Hard, monsters are present and have one health
+			// in case the player needs/wants to pop them. In this case the
+			// monster death triggers (if any) will only fire when the
+			// monster is killed.
+			self.health = 1;
+		}
+		else
+		{
+			// On Nightmare we still remove all monsters.
+			self.think = monster_kill_hide;
+		}
+	}
+	else if (cvar("showturtle") == 3)
+	{
+		// No monsters on any skill setting. This is equivalent to picking the
+		// Nightmare skill in previous modes; also same as the original
+		// Tourism mod behavior.
 		self.think = monster_kill_hide;
-	}
-	else if (skill != 3)
-	{
-		// On Normal and Hard, monsters are present but not touchable or
-		// shootable. Both Normal and Hard modes supported here because there
-		// can be more monsters spawned on Hard mode.
-		self.solid = SOLID_NOT;
-		// Go ahead and trigger anything that would normally be triggered on
-		// monster death.
-		self.think1 = self.think;
-		self.think = monster_trigger_targets;
-	}
-	else
-	{
-		// On Nightmare, go ahead and leave the monsters solid, but give them
-		// one health in case the player needs/wants to pop them. In this
-		// case the monster death triggers (if any) will only fire when the
-		// monster is killed.
-		self.health = 1;
 	}
 };
 

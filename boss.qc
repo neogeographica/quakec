@@ -282,7 +282,7 @@ void() monster_boss =
 	total_monsters = total_monsters + 1;
 
 	// JPL ghosts mod: chthon auto-dies
-	if (cvar("showturtle") == 1)
+	if (cvar("showturtle") != 0)
 		self.use = boss_death1;
 	else
 		self.use = boss_awake;

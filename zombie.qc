@@ -387,7 +387,7 @@ void() zombie_paine30	=[	$paine30,	zombie_run1		] {};
 void() zombie_die =
 {
 	// Tourism: no death sound OR gibs
-	if (cvar("showturtle") != 1)
+	if (cvar("showturtle") == 0)
 	{
 		sound (self, CHAN_VOICE, "zombie/z_gib.wav", 1, ATTN_NORM);
 		ThrowHead ("progs/h_zombie.mdl", self.health);

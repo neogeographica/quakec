@@ -328,7 +328,7 @@ Laser is only for REGISTERED.
 void() trap_spikeshooter =
 {
 	// JPL ghosts mod: no shooters
-	if (cvar("showturtle") == 1)
+	if (cvar("showturtle") != 0)
 	{
 		remove (self);
 		return;

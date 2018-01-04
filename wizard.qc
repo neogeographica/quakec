@@ -329,7 +329,7 @@ self.velocity_y = -200 + 400*random();
 self.velocity_z = 100 + 100*random();
 self.flags = self.flags - (self.flags & FL_ONGROUND);
 // Tourism: no death sound
-if (cvar("showturtle") != 1)
+if (cvar("showturtle") == 0)
 	sound (self, CHAN_VOICE, "wizard/wdeath.wav", 1, ATTN_NORM);
 };
 void()	wiz_death2	=[	$death2,		wiz_death3	] {};
@@ -360,7 +360,7 @@ void() wiz_die =
 void(entity attacker, float damage) Wiz_Pain =
 {
 	// Tourism: no pain sound
-	if (cvar("showturtle") != 1)
+	if (cvar("showturtle") == 0)
 		sound (self, CHAN_VOICE, "wizard/wpain.wav", 1, ATTN_NORM);
 	if (random()*70 > damage)
 		return;		// didn't flinch

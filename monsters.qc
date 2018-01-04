@@ -171,7 +171,7 @@ local entity	etemp;
 	// spread think times so they don't all happen at same time
 	self.nextthink = self.nextthink + random()*0.5;
 	// Tourism
-	if (cvar("showturtle") == 1)
+	if (cvar("showturtle") != 0)
 		monster_tourismify();
 };
 
@@ -228,7 +228,7 @@ void() flymonster_start_go =
 		self.th_stand ();
 	}
 	// Tourism
-	if (cvar("showturtle") == 1)
+	if (cvar("showturtle") != 0)
 		monster_tourismify();	
 };
 
@@ -283,7 +283,7 @@ void() swimmonster_start_go =
 // spread think times so they don't all happen at same time
 	self.nextthink = self.nextthink + random()*0.5;
 	// Tourism
-	if (cvar("showturtle") == 1)
+	if (cvar("showturtle") != 0)
 		monster_tourismify();
 };
 

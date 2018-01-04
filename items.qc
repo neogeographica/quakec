@@ -64,7 +64,7 @@ Sets the clipping size and plants the object on the floor
 void() StartItem =
 {
 	// JPL ghosts mod: remove all items except keys
-	if (cvar("showturtle") == 1 && self.classname !=  "item_key1" &&
+	if (cvar("showturtle") != 0 && self.classname !=  "item_key1" &&
 		self.classname !=  "item_key2" && self.classname !=  "item_sigil")
 	{
 		remove(self);

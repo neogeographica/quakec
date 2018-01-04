@@ -285,7 +285,7 @@ local float	rsnd;
 	// off in monster_use) so that they will start moving rather than just
 	// standing still. However we don't want to play their sight roar sound.
 	// See also comments in ai_run.
-	if (cvar("showturtle") == 1)
+	if (cvar("showturtle") != 0)
 		return;
 
 	if (self.classname == "monster_ogre")	
@@ -363,7 +363,7 @@ float() FindTarget =
 	local float		r;
 
 	// Tourism: always notarget (in case skill > 0 therefore monsters exist)
-	if (cvar("showturtle") == 1)
+	if (cvar("showturtle") != 0)
 		return FALSE;
 
 // if the first spawnflag bit is set, the monster will only wake up on
@@ -699,7 +699,7 @@ void(float dist) ai_run =
 	// off in monster_use) so that they will start moving rather than just
 	// standing still. However we don't want them to actually attack the
 	// player. See also comments in SightSound.
-	if (self.enemy.health <= 0 || cvar("showturtle") == 1)
+	if (self.enemy.health <= 0 || cvar("showturtle") != 0)
 	{
 		self.enemy = world;
 	// FIXME: look all around for other targets

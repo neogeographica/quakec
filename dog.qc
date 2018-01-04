@@ -241,7 +241,7 @@ void() dog_die =
 
 // regular death
 	// Tourism: no death sound
-	if (cvar("showturtle") != 1)
+	if (cvar("showturtle") == 0)
 		sound (self, CHAN_VOICE, "dog/ddeath.wav", 1, ATTN_NORM);
 	self.solid = SOLID_NOT;
 

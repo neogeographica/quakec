@@ -300,7 +300,7 @@ void() enf_die =
 
 // regular death
 	// Tourism: no death sound
-	if (cvar("showturtle") != 1)
+	if (cvar("showturtle") == 0)
 		sound (self, CHAN_VOICE, "enforcer/death1.wav", 1, ATTN_NORM);
 	if (random() > 0.5)
 		enf_die1 ();

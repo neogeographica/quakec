@@ -110,7 +110,7 @@ void(entity targ, entity inflictor, entity attacker, float damage) T_Damage=
 		return;
 
 	// JPL ghosts mod: no damage, ever
-	if (targ.classname == "player" && cvar("showturtle") == 1)
+	if (targ.classname == "player" && cvar("showturtle") != 0)
 		return;
 
 // used by buttons and triggers to set activator for target firing

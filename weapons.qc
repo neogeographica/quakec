@@ -271,7 +271,7 @@ void() W_FireShotgun =
 	self.punchangle_x = -2;
 
 	// JPL ghosts mod: infinite boomstick ammo
-	if (cvar("showturtle") != 1)
+	if (cvar("showturtle") == 0)
 	   self.currentammo = self.ammo_shells = self.ammo_shells - 1;
 	dir = aim (self, 100000);
 	FireBullets (6, dir, '0.04 0.04 0');
@@ -843,7 +843,7 @@ float() W_BestWeapon =
 	if(self.ammo_shells >= 1 && (it & IT_SHOTGUN) )
 		return IT_SHOTGUN;
 	// JPL tourism: ignore axe, shotgun will always have ammo
-	if (cvar("showturtle") == 1)
+	if (cvar("showturtle") != 0)
 		return IT_SHOTGUN;
 	else
 		return IT_AXE;
@@ -961,7 +961,7 @@ void() W_ChangeWeapon =
 	if (self.impulse == 1)
 	{
 		// tourism: don't use axe
-		if (cvar("showturtle") == 1)
+		if (cvar("showturtle") != 0)
 			return;
 		fl = IT_AXE;
 	}
@@ -1081,7 +1081,7 @@ void() CycleWeaponCommand =
 		if (self.weapon == IT_LIGHTNING)
 		{
 			// JPL tourism: ignore axe
-			if (cvar("showturtle") == 1)
+			if (cvar("showturtle") != 0)
 				self.weapon = IT_SHOTGUN;
 			else
 				self.weapon = IT_AXE;
@@ -1194,7 +1194,7 @@ void() CycleWeaponReverseCommand =
 		}
 		else if (self.weapon == IT_SHOTGUN)
 		{
-			if (cvar("showturtle") == 1)
+			if (cvar("showturtle") != 0)
 				return;
 			else
 				self.weapon = IT_AXE;

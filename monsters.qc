@@ -301,6 +301,7 @@ void() swimmonster_start_go =
 
 // spread think times so they don't all happen at same time
 	self.nextthink = self.nextthink + random()*0.5;
+
 	// Tourism
 	if (cvar("showturtle") != 0)
 		monster_tourismify();

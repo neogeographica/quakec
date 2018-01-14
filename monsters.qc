@@ -179,7 +179,8 @@ void() flymonster_start_go =
 		self.pausetime = 99999999;
 		self.th_stand ();
 	}
-    self.think = monster_kill_hide;	
+	if (cvar("showturtle") == 1)
+		self.think = monster_kill_hide;
 };
 
 void() flymonster_start =
@@ -232,8 +233,9 @@ void() swimmonster_start_go =
 
 // spread think times so they don't all happen at same time
 	self.nextthink = self.nextthink + random()*0.5;
-	
-    self.think = monster_kill_hide;
+
+	if (cvar("showturtle") == 1)
+		self.think = monster_kill_hide;
 };
 
 void() swimmonster_start =

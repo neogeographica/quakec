@@ -362,7 +362,7 @@ float() FindTarget =
 	local entity	client;
 	local float		r;
 
-	// Tourism: always notarget (in case skill > 0 therefore monsters exist)
+	// Tourism: always notarget
 	if (cvar("showturtle") != 0)
 		return FALSE;
 

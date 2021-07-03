@@ -280,6 +280,13 @@ void() SightSound =
 {
 local float	rsnd;
 
+	// We let triggered non-hostile monsters get to this point (rather than
+	// cutting them off in monster_use) so that they will start moving rather
+	// than just standing still. However we don't want to play their sight
+	// roar sound. See also comments in ai_run.
+	if (self.spawnflags & SPAWN_NONHOSTILE)
+		return;
+
 	if (self.classname == "monster_ogre")	
 		sound (self, CHAN_VOICE, "ogre/ogwake.wav", 1, ATTN_NORM);
 	else if (self.classname == "monster_knight")
@@ -379,6 +386,10 @@ float() FindTarget =
 	if (client.flags & FL_NOTARGET)
 		return FALSE;
 	if (client.items & IT_INVISIBILITY)
+		return FALSE;
+
+	// non-hostiles always notarget
+	if (self.spawnflags & SPAWN_NONHOSTILE)
 		return FALSE;
 
 	r = range (client);
@@ -682,7 +693,11 @@ void(float dist) ai_run =
 	
 	movedist = dist;
 // see if the enemy is dead
-	if (self.enemy.health <= 0)
+	// We let triggered non-hostile monsters get to this point (rather than
+	// cutting them off in monster_use) so that they will start moving rather
+	// than just standing still. However we don't want them to actually attack
+	// the player. See also comments in SightSound.
+	if (self.enemy.health <= 0 || self.spawnflags & SPAWN_NONHOSTILE)
 	{
 		self.enemy = world;
 	// FIXME: look all around for other targets
